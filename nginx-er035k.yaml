@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-er035k
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-er035k
+  namespace: my-nginx-er035k
+  labels:
+    name: nginx-er035k
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-er035k
+  template:
+    metadata:
+      namespace: my-nginx-er035k
+      labels:
+        name: nginx-er035k
+    spec:
+      containers:
+      - name: nginx-er035k
+        image: nginx
+        ports:
+        - containerPort: 80
+
